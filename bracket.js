@@ -47,15 +47,15 @@ function generate() {
     roundDivs.push(col);
   });
 
-  drawLines(roundDivs);
-  window.addEventListener("resize", () => drawLines(roundDivs));
+  drawLines(roundDivs, rounds);
+  window.addEventListener("resize", () => drawLines(roundDivs, rounds));
 }
 
 function clickPlayer(rounds, roundIndex, index) {
   const round = rounds[roundIndex];
   const player = round[index];
 
-  // 先清空同場比賽的 winner
+  // 清除同場比賽 winner 樣式
   const parentDiv = document.querySelectorAll(`.round:nth-child(${roundIndex+1}) .player`);
   const matchIndex = Math.floor(index / 2) * 2;
   parentDiv[matchIndex].classList.remove("winner");
@@ -81,7 +81,7 @@ function clickPlayer(rounds, roundIndex, index) {
   drawLines(roundDivs, rounds);
 }
 
-// 畫線，紅色勝者線
+// 畫線，勝者線變紅
 function drawLines(roundDivs, rounds) {
   // 移除舊 SVG
   if (svgGlobal) svgGlobal.remove();
@@ -121,7 +121,6 @@ function drawLines(roundDivs, rounds) {
       line1.setAttribute("y2",y2);
       line1.setAttribute("stroke", rounds[r][i].winner ? "red" : "black");
       line1.setAttribute("stroke-width", rounds[r][i].winner ? 2 : 1);
-      line1.classList.add(rounds[r][i].winner ? "winner-line" : "");
       svg.appendChild(line1);
 
       // 右邊線
@@ -132,7 +131,6 @@ function drawLines(roundDivs, rounds) {
       line2.setAttribute("y2",y2);
       line2.setAttribute("stroke", rounds[r][i+1].winner ? "red" : "black");
       line2.setAttribute("stroke-width", rounds[r][i+1].winner ? 2 : 1);
-      line2.classList.add(rounds[r][i+1].winner ? "winner-line" : "");
       svg.appendChild(line2);
     }
   }
