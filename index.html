@@ -2,18 +2,17 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>單淘汰對戰圖</title>
+  <title>32 人單淘汰晉級圖</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h2>32 人單淘汰晉級圖</h2>
 
-<h2>單淘汰賽對戰圖</h2>
+  <textarea id="players" placeholder="一行一個人名"></textarea><br><br>
+  <button onclick="generate()">產生對戰圖</button>
 
-<textarea id="players" placeholder="一行一個人名"></textarea>
-<br><br>
-<button onclick="generate()">產生對戰表</button>
+  <div id="bracket-container"></div>
 
-<div id="bracket"></div>
-
-<script src="bracket.js"></script>
+  <script src="bracket.js"></script>
 </body>
 </html>
